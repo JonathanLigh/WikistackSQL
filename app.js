@@ -11,5 +11,7 @@ app.use(morgan('dev'));
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
+console.log("hello");
+
 
 var server = app.listen(3000);
