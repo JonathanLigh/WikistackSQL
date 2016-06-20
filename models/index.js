@@ -4,31 +4,44 @@ var Sequelize = require('sequelize');
 
 var db = new Sequelize('postgres://localhost:5432/wikistack');
 
+var Page = db.define('page', {
+    title: {
+        type: Sequelize.STRING
+    },
+    urlTitle: {
+        type: Sequelize.STRING
+    },
+    content: {
+        type: Sequelize.TEXT
+    },
+    status: {
+        type: Sequelize.ENUM('open', 'closed')
+    },
+    date: {
+        type: Sequelize.DATE
+    }
+});
 
-var pageObj = {
-	title: Sequelize.STRING,
-	urlTitle: Sequelize.STRING,
-	content: Sequelize.TEXT,
-	date: Sequelize.DATE,
-	status: Sequelize.BOOLEAN
-};
+var User = db.define('user', {
+    name: {
+        type: Sequelize.STRING
+    },
+    email: {
+        type: Sequelize.STRING
+    }
+});
 
-var userObj = {
-	username: Sequelize.STRING
-	email: Sequelize.String,
-};
-
-
-
-var Page = db.define('Page', pageObj);
-var User = db.define('User', userObj);
-User.hook
 
 db
 	.sync({ force: true})
-	.the(function(err){
+	.then(function(err){
 		console.log('it works');
 	}, function(err){
 		console.error(err);
 	});
 
+
+module.exports = {
+	Page:Page,
+	User:User
+}
