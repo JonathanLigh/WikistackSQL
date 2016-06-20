@@ -3,8 +3,16 @@
 {% block content %}
   <h3>Pages</h3>
   <hr>
+<ul>
+  {% for page in pages %}
+    <li><a href="#">PLACEHOLDER</a></li>
+  {% endfor %}
+</ul>
   <ul class="list-unstyled">
-    <!-- PLACEHOLDER LIST OF PAGES -->
+        <div class="content">
+            <p class="by"><a href="/wiki/{{pages.title}}">{{page.title}}</a></p>
+            <p><a href="/wiki/{{pages.id}}">{{page.content}}</a></p>
+        </div>
   </ul>
 {% endblock %}
 Raw

@@ -7,6 +7,11 @@ var db = new Sequelize('postgres://localhost:5432/wikistack',{
 });
 
 var Page = db.define('page', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement:true 
+    },
     title: {
         type: Sequelize.STRING, 
         allowNull: false
@@ -14,18 +19,20 @@ var Page = db.define('page', {
     urlTitle: {
         type: Sequelize.STRING,
         allowNull: false
-    },
+    },  
     content: {
         type: Sequelize.TEXT, 
         allowNull: false
     },
     status: {
-        type: Sequelize.ENUM('open', 'closed')
+        type: Sequelize.ENUM('open', 'closed'),
+        defaultValue: 'open'
     },
     date: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
-    }
+    }   
+
 });
 
 var User = db.define('user', {
@@ -39,6 +46,7 @@ var User = db.define('user', {
         allowNull: false
     }
 });
+Page.belongsTo(User, {as: 'author'});
 
 
 module.exports = {
