@@ -11,7 +11,9 @@ app.use(morgan('dev'));
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
-console.log("hello");
+app.use(routes);
 
 
-var server = app.listen(3000);
+var server = app.listen(3000, function(){
+	console.log('listening on port 3000')
+});
