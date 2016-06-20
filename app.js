@@ -16,7 +16,7 @@ app.set('views', __dirname + '/views');
 
 
 //get routes
-app.use(routes);
+app.use('/wiki/', routes);
 
 //syncing the User
 models.User.sync({})
